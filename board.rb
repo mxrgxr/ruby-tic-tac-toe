@@ -15,10 +15,14 @@ class Board
     end
   end
 
+  private
+
   def valid_move?(index)
     # check that index is within range and the value at index is empty
     index.between?(0, 8) && @board[index] == ' '
   end
+
+  public
 
   def update(cell_id, symbol)
     index = cell_id - 1
