@@ -25,4 +25,9 @@ class Board
     # if valid move update cell value to symbol and return if successful boolean
     valid_move?(index) ? (@board[index] = symbol; true) : false
   end
+
+  def full?
+    # iterate over board array and check if any cells are empty
+    @board.none? { |cell| cell == ' ' }
+  end
 end
