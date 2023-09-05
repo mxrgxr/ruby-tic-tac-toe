@@ -19,4 +19,10 @@ class Board
     # check that index is within range and the value at index is empty
     index.between?(0, 8) && @board[index] == ' '
   end
+
+  def update(cell_id, symbol)
+    index = cell_id - 1
+    # if valid move update cell value to symbol and return if successful boolean
+    valid_move?(index) ? (@board[index] = symbol; true) : false
+  end
 end
