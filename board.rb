@@ -30,4 +30,8 @@ class Board
     # iterate over board array and check if any cells are empty
     @board.none? { |cell| cell == ' ' }
   end
+
+  def reset
+    initialize
+  end
 end
