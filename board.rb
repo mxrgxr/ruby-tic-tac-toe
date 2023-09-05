@@ -14,4 +14,9 @@ class Board
       puts '---------' unless index == 2
     end
   end
+
+  def valid_move?(index)
+    # check that index is within range and the value at index is empty
+    index.between?(0, 8) && @board[index] == ' '
+  end
 end
