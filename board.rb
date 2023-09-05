@@ -23,7 +23,7 @@ class Board
   def update(cell_id, symbol)
     index = cell_id - 1
     # if valid move update cell value to symbol and return if successful boolean
-    valid_move?(index) ? (@board[index] = symbol; true) : false
+    valid_move?(index) ? (@board[index] = symbol) : false
   end
 
   def full?
