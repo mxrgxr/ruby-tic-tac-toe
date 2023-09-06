@@ -10,4 +10,13 @@ class Game
     @board = Board.new
     @current_player = @player1
   end
+
+  def start
+    # handle player turns and switch players until game is over true
+    until game_over?
+      play_turn
+      switch_player
+    end
+    display_final_result
+  end
 end
