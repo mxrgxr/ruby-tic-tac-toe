@@ -46,6 +46,17 @@ class Game
     check_winner
   end
 
+  def player_move_input
+    # prompt user to make their move and validate input
+    print 'Enter your move (1-9): '
+    cell_id = gets.chomp.to_i
+    until (1..9).include?(cell_id) && @board.valid_move?(cell_id - 1)
+      print 'Invalid move. Enter your move (1-9): '
+      cell_id = gets.chomp.to_i
+    end
+    cell_id
+  end
+
   def display_final_result
     @board.display
     display_winner
