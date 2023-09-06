@@ -75,6 +75,10 @@ class Game
     nil
   end
 
+  def game_over?
+    check_winner || board.full?
+  end
+
   def display_final_result
     @board.display
     display_winner
