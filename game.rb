@@ -79,6 +79,16 @@ class Game
     check_winner || board.full?
   end
 
+  def display_winner
+    # check winner returns player object if true display message
+    winner = check_winner
+    if winner
+      prints "Player #{winner.symbol} wins"
+    else
+      prints "It's a draw"
+    end
+  end
+
   def display_final_result
     @board.display
     display_winner
