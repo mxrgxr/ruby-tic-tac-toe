@@ -34,4 +34,9 @@ class Game
     end
     check_winner
   end
+
+  def display_final_result
+    @board.display
+    display_winner
+  end
 end
