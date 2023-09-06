@@ -63,6 +63,18 @@ class Game
     cell_id
   end
 
+  def check_winner
+    # iterate over winning combinations array
+    WINNING_COMBINATIONS.each do |combination|
+      # map cell indices in winning combination and return cell value at index
+      symbols = combination.map { |index| @board.cell_value(index) }
+      # check all symbols in array are the same and not initial emtpy value
+      return @current_player if symbols.uniq.length == 1 && symbols.first != ' '
+    end
+    # return nil if no winner
+    nil
+  end
+
   def display_final_result
     @board.display
     display_winner
