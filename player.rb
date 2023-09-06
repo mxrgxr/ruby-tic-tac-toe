@@ -4,6 +4,7 @@ require_relative 'ai'
 # Player symbol and handle user's move
 class Player
   include AI
+  attr_reader :symbol, :is_ai
 
   def initialize(symbol, is_ai: false)
     # player id is X or O
