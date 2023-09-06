@@ -30,7 +30,7 @@ class Game
 
   def player_symbol_input
     # prompt for user input and validate that it is an X or O, format correctly and store in variable
-    prints 'Enter symbol choice (X or O): '
+    print 'Enter symbol choice (X or O): '
     symbol = gets.chomp.upcase
     until %w[X O].include?(symbol)
       print 'Invalid choice. Enter symbol choice (X or O): '
@@ -44,9 +44,11 @@ class Game
     @board.display
     # check if player is AI to determine which method to call for move
     if @current_player.is_ai
+      print 'AI move: '
+      puts "\n"
       @current_player.make_move(@board)
     else
-      cell_id = get_player_input
+      cell_id = player_move_input
       @current_player.make_move(@board, cell_id)
     end
     check_winner
@@ -63,29 +65,33 @@ class Game
     cell_id
   end
 
+  def opponent(player)
+    player == @player1 ? @player2 : @player1
+  end
+
   def check_winner
     # iterate over winning combinations array
     WINNING_COMBINATIONS.each do |combination|
       # map cell indices in winning combination and return cell value at index
       symbols = combination.map { |index| @board.cell_value(index) }
       # check all symbols in array are the same and not initial emtpy value
-      return @current_player if symbols.uniq.length == 1 && symbols.first != ' '
+      return opponent(@current_player) if symbols.uniq.length == 1 && symbols.first != ' '
     end
     # return nil if no winner
     nil
   end
 
   def game_over?
-    check_winner || board.full?
+    check_winner || @board.full?
   end
 
   def display_winner
     # check winner returns player object if true display message
     winner = check_winner
     if winner
-      prints "Player #{winner.symbol} wins"
+      print "Player #{winner.symbol} wins"
     else
-      prints "It's a draw"
+      print "It's a draw"
     end
   end
 
