@@ -3,7 +3,7 @@
 # Handle game flow from start, handle player input, check for winner, and display messages
 class Game
   def initialize
-    player_symbol = get_player_symbol
+    player_symbol = player_symbol_input
     ai_symbol = player_symbol == 'X' ? 'O' : 'X'
     @player1 = Player.new(player_symbol)
     @player2 = Player.new(ai_symbol, is_ai: true)
@@ -21,6 +21,17 @@ class Game
   end
 
   private
+
+  def player_symbol_input
+    # prompt for user input and validate that it is an X or O, format correctly and store in variable
+    prints 'Enter symbol choice (X or O): '
+    symbol = gets.chomp.upcase
+    until %w[X O].include?(symbol)
+      print 'Invalid choice. Enter symbol choice (X or O): '
+      symbol = gets.chomp.upcase
+    end
+    symbol
+  end
 
   def play_turn
     # display board state
