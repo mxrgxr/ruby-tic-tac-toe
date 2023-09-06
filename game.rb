@@ -19,4 +19,19 @@ class Game
     end
     display_final_result
   end
+
+  private
+
+  def play_turn
+    # display board state
+    @board.display
+    # check if player is AI to determine which method to call for move
+    if @current_player.is_ai
+      @current_player.make_move(@board)
+    else
+      cell_id = get_player_input
+      @current_player.make_move(@board, cell_id)
+    end
+    check_winner
+  end
 end
