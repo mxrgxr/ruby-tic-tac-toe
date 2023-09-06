@@ -2,6 +2,12 @@
 
 # Handle game flow from start, handle player input, check for winner, and display messages
 class Game
+  WINNING_COMBINATIONS = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+    [0, 4, 8], [2, 4, 6]
+  ].freeze
+
   def initialize
     player_symbol = player_symbol_input
     ai_symbol = player_symbol == 'X' ? 'O' : 'X'
